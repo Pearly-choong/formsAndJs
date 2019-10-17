@@ -19,34 +19,61 @@ var projectA = [];
 var projectB = [];
 var projectC = [];
 var averagePerformance = [];
+var largest = 0;
 
 var n = parseInt(prompt('Enter the number of employees'));
 
 document.getElementById('saveData').addEventListener('click', function(){
+  console.log(names.length);
+  if (names.length < n){
+
   var ename = document.getElementById('ename').value;
   console.log(ename);
 
-  var projA = document.getElementById('projectA').value;
+  var projA = parseInt(document.getElementById('projectA').value);
   console.log(projA);
 
-  var projB = document.getElementById('projectB').value;
+  var projB = parseInt(document.getElementById('projectB').value);
   console.log(projB);
 
-  var projC = document.getElementById('projectC').value;
+  var projC = parseInt(document.getElementById('projectC').value);
   console.log(projC);
 
-  var average = (projA + projB + projC)/3;
+  var average = ((projA + projB + projC)/3).toFixed(2);
   console.log(average);
 
   document.getElementsByTagName('div')[0].innerHTML
-  += '</br>' + ename + '</br>' + projA + '</br>' + projB + '</br>' + projC;
+  += '</br></br>' + ename + '</br>' + projA + '</br>' + projB + '</br>' + projC + '</br>' + 'Average Performance: ' + average;
 
-  names.push(ename);
+  document.getElementById('average').value = average;
+
+  names.push(ename); //push = adding a new value to the array
   projectA.push(projA);
   projectB.push(projB);
   projectC.push(projC);
   averagePerformance.push(average);
   console.log(names, projectA, projectB, projectC, averagePerformance);
 
+  for (var i=0; i<averagePerformance.length; i++){
+    if(largest < averagePerformance[i]){
+      largest = averagePerformance[i];
+      console.log(largest);
+    }
+  }
+  document.getElementsById('highestData').innerHTML += '</br>' + largest;
 
+
+
+} else {
+  alert('Sorry, cannot store more employees\' details');
+}
+
+});
+
+document.getElementById('newData').addEventListener('click', function(){
+  document.getElementById('ename').value = '';
+  document.getElementById('projectA').value = '';
+  document.getElementById('projectB').value = '';
+  document.getElementById('projectC').value = '';
+  document.getElementById('average').value = '';
 });
