@@ -54,13 +54,31 @@ document.getElementById('saveData').addEventListener('click', function(){
   averagePerformance.push(average);
   console.log(names, projectA, projectB, projectC, averagePerformance);
 
-  for (var i=0; i<averagePerformance.length; i++){
-    if(largest < averagePerformance[i]){
-      largest = averagePerformance[i];
-      console.log(largest);
+
+
+
+  document.getElementById('highestData').addEventListener ('click', function(){
+  //document.getElementsByTagName('div')[0].innerHTML += '</br></br> Highest performance is ' + largest;
+
+    for (var i=0; i<averagePerformance.length; i++){
+      if(largest < averagePerformance[i]){
+        largest = averagePerformance[i];
+        var listIndex = i;
+        console.log(largest);
+      }
     }
-  }
-  document.getElementsById('highestData').innerHTML += '</br>' + largest;
+
+    for (var j=0; j<averagePerformance.length; j++){
+      if (j === listIndex) {
+      //var nameIndex = names[j];
+      console.log(names[j]);
+      document.getElementsByTagName('div')[0].innerHTML
+      += '</br></br> ' + names[j] + ' is the outstanding employee' + ' and average performance is ' + largest;
+      }
+    }
+
+  })
+
 
 
 
